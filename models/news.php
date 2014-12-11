@@ -1,38 +1,58 @@
 <?php
 
 require_once __DIR__ . '/../functions/db.php';
+require_once 'article.php';
 
-function News_getAll()
+class NewsModel extends Article
 {
-    return DBQuery("
-    SELECT * FROM news
-    ");
-}
-
-
-function add_news($post)
-{
-	foreach($post as $key => &$value)
+	private $DB;
+	
+	public function __construct()
 	{
-		$value = strip_tags($value);
+		$this->DB = new DB();
 	}
-	unset($value);
 	
-	global $DB;
-	
-	$sql = "INSERT INTO news (title, text) VALUES ('$post[title]', '$post[text]')";
-	$DB->query($sql);
-	var_dump($DB->errorInfo());
-}
+	public function News_getAll()
+	{
+		$sql = "SELECT * FROM news";
+		$res = $this->DB->DBQuery($sql);
 
-function get_news($id)
-{
-	global $DB;
+		if(!$res){
+			var_dump($this->DB->errorInfo());
+			return false;
+		}
+
+		return $res;
+	}
 	
-	$sql = "SELECT * FROM news WHERE id = $id";
-	$rrr = DBQuery($sql);
-	var_dump($rrr);
+	public function get_one_news($id)
+	{
+		$sql = "SELECT * FROM news WHERE id = $id";
+		$res = $this->DB->DBQueryOne($sql);
+		
+		if(!$res){
+			var_dump($this->DB->errorInfo());
+			return false;
+		}	
+		
+		return $res;		
+	}
 	
-	return $rrr;
+	public function add_news($title, $text)
+	{
+		$sql = "INSERT INTO news (title, text) VALUES ('$title', '$text')";
+		$res = $this->DB->query($sql);
+		
+		if($res){
+			return true;
+		} else {
+			var_dump($this->DB->errorInfo());
+			return false;
+		}
+	}
 	
+	public function update_news($id)
+	{
+		
+	}
 }

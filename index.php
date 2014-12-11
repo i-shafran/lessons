@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/models/news.php';
+require_once __DIR__ . '/controllers/news.php';
 
-$news = News_getAll();
+$news = new NewsController();
 
-include 'view/index.php';
+echo $news->index();

@@ -1,22 +1,7 @@
-<?
-require_once __DIR__ . '/models/news.php';
+<?php
 
-if(isset($_GET["id"])){
-	$id = (int) $_GET["id"];
-	$news = get_news($_GET["id"]);
-}
-?>
+require_once __DIR__ . '/controllers/news.php';
 
-<?if(isset($_GET["id"])):?>
-<html>
-<head>
-    <title>Новость</title>
-</head>
-<body>
-	<article>
-		<h1><?=$news['title'];?></h1>
-		<div><?=$news['text'];?></div>
-	</article>
-</body>
-</html>
-<?endif?>
+$news = new NewsController();
+
+echo $news->CNews_detail();

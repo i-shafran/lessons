@@ -1,6 +1,7 @@
 <?php
 
-class PDOConfig extends PDO {
+class PDOConfig extends PDO
+{
 
 	private $engine;
 	private $host;
@@ -9,61 +10,38 @@ class PDOConfig extends PDO {
 	private $pass;
 
 	public function __construct(){
-		$config = config();
+		$config = include __DIR__ . '/../config.php';
 		$this->engine = 'mysql';
 		$this->host = $config['db']['host'];
 		$this->database = $config['db']['dbname'];
 		$this->user = $config['db']['user'];
 		$this->pass = $config['db']['password'];
 		$dns = $this->engine.':dbname='.$this->database.";host=".$this->host;
-		var_dump($dns);
 		parent::__construct( $dns, $this->user, $this->pass );
 	}
 }
 
-function config()
+class DB extends  PDOConfig
 {
-    return include __DIR__ . '/../config.php';
-}
-
-$DB = new PDOConfig();
-
-
-
-
-function DBConnect()
-{
-    $config = config();
-    mysql_connect(
-        $config['db']['host'],
-        $config['db']['user'],
-        $config['db']['password']
-    );
-    mysql_select_db($config['db']['dbname']);
-}
-
-function DBQuery($sql)
-{
-	global $DB;
-	$res = array();
-	$DB->query("SET NAMES utf8");
-	$res = $DB->query($sql, PDO::FETCH_ASSOC);
-	$res = $res->fetchAll();
+	public function __construct()
+	{
+		parent::__construct();
+		$this->query("SET NAMES utf8");
+	}
 	
-	return $res;
-	
-	
-/*    DBConnect();
-    $res = mysql_query($sql);
-    if (!$res) {
-        echo mysql_error();
-        return [];
-    }
+	public function DBQuery($sql)
+	{
+		$res = $this->query($sql, PDO::FETCH_ASSOC);
+		$res = $res->fetchAll();
 
-    $ret = [];
-    while ($row = mysql_fetch_assoc($res))
-    {
-        $ret[] = $row;
-    }
-    return $ret;*/
+		return $res;
+	}
+	
+	public function DBQueryOne($sql)
+	{
+		$res = $this->query($sql, PDO::FETCH_ASSOC);
+		$res = $res->fetch();
+
+		return $res;
+	}
 }
