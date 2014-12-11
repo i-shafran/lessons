@@ -3,6 +3,8 @@
 class PDOConfig extends PDO
 {
 
+	const config_file = "config.php";
+	
 	private $engine;
 	private $host;
 	private $database;
@@ -10,7 +12,7 @@ class PDOConfig extends PDO
 	private $pass;
 
 	public function __construct(){
-		$config = include __DIR__ . '/../config.php';
+		$config = include __DIR__ . "/../".self::config_file;
 		$this->engine = 'mysql';
 		$this->host = $config['db']['host'];
 		$this->database = $config['db']['dbname'];
