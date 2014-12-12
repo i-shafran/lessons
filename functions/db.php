@@ -34,6 +34,10 @@ class DB extends  PDOConfig
 	public function DBQuery($sql)
 	{
 		$res = $this->query($sql, PDO::FETCH_ASSOC);
+		if(!$res){
+			var_dump($this->errorInfo());
+			return false;
+		}
 		$res = $res->fetchAll();
 
 		return $res;
@@ -42,6 +46,10 @@ class DB extends  PDOConfig
 	public function DBQueryOne($sql)
 	{
 		$res = $this->query($sql, PDO::FETCH_ASSOC);
+		if(!$res){
+			var_dump($this->errorInfo());
+			return false;
+		}
 		$res = $res->fetch();
 
 		return $res;

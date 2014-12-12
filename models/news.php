@@ -11,7 +11,8 @@ class NewsModel extends Article
 	{
 		$this->DB = new DB();
 	}
-	
+
+	// Список новостей
 	public function News_getAll()
 	{
 		$sql = "SELECT * FROM news";
@@ -25,6 +26,7 @@ class NewsModel extends Article
 		return $res;
 	}
 	
+	// Получить 1 новость
 	public function get_one_news($id)
 	{
 		$sql = "SELECT * FROM news WHERE id = $id";
@@ -38,6 +40,7 @@ class NewsModel extends Article
 		return $res;		
 	}
 	
+	// Добавить новость
 	public function add_news($title, $text)
 	{
 		$sql = "INSERT INTO news (title, text) VALUES ('$title', '$text')";
@@ -51,6 +54,7 @@ class NewsModel extends Article
 		}
 	}
 	
+	// Обновить новость
 	public function update_news($id)
 	{
 		

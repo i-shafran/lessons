@@ -1,15 +1,24 @@
 <?
 require_once __DIR__ . '/../models/news.php';
 
-class NewsController extends NewsModel
+class NewsController
 {
+	private $model;
+	
+	public function __construct()
+	{
+		$this->model = new NewsModel();
+	}
+	
+	// Список новостей
 	public function index()
 	{
-		$arData = $this->News_getAll();
+		$arData = $this->model->News_getAll();
 		header('Content-type: text/html; charset=UTF-8');
 		return include_once __DIR__ . '/../view/index.php';
 	}
 	
+	// Детальная новости
 	public function CNews_detail()
 	{
 		if(isset($_GET["id"])){
@@ -18,7 +27,7 @@ class NewsController extends NewsModel
 			return false;
 		}
 		
-		$arData = $this->get_one_news($id);
+		$arData = $this->model->get_one_news($id);
 
 		header('Content-type: text/html; charset=UTF-8');
 		if(!$arData){
@@ -28,6 +37,7 @@ class NewsController extends NewsModel
 		}
 	}
 	
+	// Добавление новости
 	public function CAdd_news()
 	{
 		if(!isset($_POST["title"]) or !isset($_POST["text"]))
@@ -41,7 +51,7 @@ class NewsController extends NewsModel
 			}
 			unset($value);
 
-			$res = $this->add_news($_POST["title"], $_POST["text"]);
+			$res = $this->model->add_news($_POST["title"], $_POST["text"]);
 
 			header('Content-type: text/html; charset=UTF-8');
 			if(!$res){
@@ -53,6 +63,7 @@ class NewsController extends NewsModel
 		}		
 	}
 	
+	// Обновление новости
 	public function CUpdate_news()
 	{
 		if(isset($_GET["id"])){
@@ -61,7 +72,7 @@ class NewsController extends NewsModel
 			return false;
 		}
 
-		$arData = $this->get_one_news($id);
+		$arData = $this->model->get_one_news($id);
 
 		header('Content-type: text/html; charset=UTF-8');
 		if(!isset($arData["title"])){
