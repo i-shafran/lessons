@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../functions/db.php';
+require_once __DIR__ . '/../classes/db.php';
 require_once 'article.php';
 
 class NewsModel extends Article
