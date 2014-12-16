@@ -82,15 +82,3 @@ class Storage implements Countable, Iterator
 		return reset($this->data);
 	}
 }
-
-$st = new Storage();
-
-$st->foo = "dfsd";
-$st->ddd = 458;
-$st->dfd = "gfdg";
-
-foreach($st as $key => $value)
-{
-	echo $key . "=" . $value;
-	echo "<br>";
-}

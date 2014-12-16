@@ -1,11 +1,11 @@
 <html>
 <head>
-	<title>Детально о новости <?=$news['title'];?></title>
+	<title>Детально о новости <?=$this->arData["title"];?></title>
 </head>
 <body>
 <article>
-	<h1><?=$arData['title'];?></h1>
-	<div><?=$arData['text'];?></div>
+	<h1><?=$this->arData["title"];?></h1>
+	<div><?=$this->arData["text"];?></div>
 </article>
 </body>
 </html>

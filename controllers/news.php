@@ -55,12 +55,12 @@ class NewsController
 			}
 			unset($value);
 
-			$this->view->arData = $this->model->add_news($_POST["title"], $_POST["text"]);
+			$res = $this->model->add_news($_POST["title"], $_POST["text"]);
 
-			if(!$this->view->arData){
+			if(!$res){
 				echo "Что-то пошло не так";
 			} else {
-				$this->view->arData["MESS"] = "Новость успешно добавлена!";
+				$this->view->MESS = "Новость успешно добавлена!";
 				echo $this->view->display("add_news");
 			}
 		}		
@@ -75,9 +75,9 @@ class NewsController
 			return false;
 		}
 
-		$arData = $this->model->get_one_news($id);
+		$this->view->arData = $this->model->get_one_news($id);
 
-		if(!isset($arData["title"])){
+		if(!$this->view->arData){
 			echo "Нет такой новости";
 		} else {
 			echo $this->view->display("update_news");

@@ -6,6 +6,6 @@
 	<input type="submit" name="submit" value="Добавить новость">
 </form>
 
-<?if(isset($arData["MESS"])){
-	echo "<p>$arData[MESS]</p>";
+<?if(isset($this->MESS)){
+	echo "<p>$this->MESS</p>";
 }?>

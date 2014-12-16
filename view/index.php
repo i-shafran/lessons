@@ -12,3 +12,5 @@
     <?php endforeach; ?>
 </body>
 </html>
+
+<?var_dump($this)?>
