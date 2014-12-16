@@ -4,8 +4,6 @@ class Storage implements Countable, Iterator
 {
 	private $data = array();
 	
-	private $element = true;
-	
 	public function __construct()
 	{
 		
@@ -49,12 +47,7 @@ class Storage implements Countable, Iterator
 	 */
 	public function next()
 	{
-		$res = next($this->data);
-		if($res === false){
-			$this->element = false;
-		}
-		
-		return $res;
+		return next($this->data);
 	}
 
 	/**
@@ -73,7 +66,11 @@ class Storage implements Countable, Iterator
 	 */
 	public function valid()
 	{
-		return $this->element;
+		if(key($this->data) !== NULL){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -82,13 +79,7 @@ class Storage implements Countable, Iterator
 	 */
 	public function rewind()
 	{
-		$res = reset($this->data);
-		if($res === false)
-		{
-			$this->element = false;
-		}
-		
-		return $res;
+		return reset($this->data);
 	}
 }
 
