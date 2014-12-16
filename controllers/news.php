@@ -1,21 +1,25 @@
 <?
 require_once __DIR__ . '/../models/news.php';
+require_once __DIR__ . '/../classes/view.php';
 
 class NewsController
 {
 	private $model;
+		
+	private $view;
 	
 	public function __construct()
 	{
 		$this->model = new NewsModel();
+		$this->view = new View();
 	}
 	
 	// Список новостей
 	public function index()
 	{
-		$arData = $this->model->News_getAll();
-		header('Content-type: text/html; charset=UTF-8');
-		return include_once __DIR__ . '/../view/index.php';
+		$this->view->arData = $this->model->News_getAll();
+		
+		echo $this->view->display("index");
 	}
 	
 	// Детальная новости
@@ -26,15 +30,16 @@ class NewsController
 		} else {
 			return false;
 		}
-		
-		$arData = $this->model->get_one_news($id);
 
-		header('Content-type: text/html; charset=UTF-8');
-		if(!$arData){
-			return "Что-то пошло не так или такой новости нет";
+		$this->view->arData = $this->model->get_one_news($id);
+
+		if(!$this->view->arData){
+			echo "Что-то пошло не так или такой новости нет";
 		} else {
-			return include_once __DIR__ . '/../view/news_detail.php';
+			echo $this->view->display("news_detail");
 		}
+		
+		return true;
 	}
 	
 	// Добавление новости
@@ -42,8 +47,7 @@ class NewsController
 	{
 		if(!isset($_POST["title"]) or !isset($_POST["text"]))
 		{
-			header('Content-type: text/html; charset=UTF-8');
-			return include_once __DIR__ . '/../view/add_news.php';
+			echo $this->view->display("add_news");
 		} else {
 			foreach($_POST as &$value)
 			{
@@ -51,14 +55,13 @@ class NewsController
 			}
 			unset($value);
 
-			$res = $this->model->add_news($_POST["title"], $_POST["text"]);
+			$this->view->arData = $this->model->add_news($_POST["title"], $_POST["text"]);
 
-			header('Content-type: text/html; charset=UTF-8');
-			if(!$res){
-				return "Что-то пошло не так";
+			if(!$this->view->arData){
+				echo "Что-то пошло не так";
 			} else {
-				$arData["MESS"] = "Новость успешно добавлена!";
-				return include_once __DIR__ . '/../view/add_news.php';
+				$this->view->arData["MESS"] = "Новость успешно добавлена!";
+				echo $this->view->display("add_news");
 			}
 		}		
 	}
@@ -74,11 +77,12 @@ class NewsController
 
 		$arData = $this->model->get_one_news($id);
 
-		header('Content-type: text/html; charset=UTF-8');
 		if(!isset($arData["title"])){
 			echo "Нет такой новости";
 		} else {
-			return include_once __DIR__ . '/../view/update_news.php';
-		}		
+			echo $this->view->display("update_news");
+		}
+		
+		return true;
 	}
 }

@@ -3,7 +3,8 @@
     <title>Новости</title>
 </head>
 <body>
-    <?php foreach ($arData as $article): ?>
+<p>Шаблон <?=$this->template_name?></p>
+    <?php foreach ($this->arData as $article): ?>
     <article>
         <h1><?=$article['title'];?></h1>
         <div><?=$article['text'];?></div>
