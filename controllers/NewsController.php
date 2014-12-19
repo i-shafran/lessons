@@ -1,6 +1,6 @@
 <?php
 
-class NewsController
+class NewsController extends AController
 {
 	private $model;
 		
@@ -13,7 +13,7 @@ class NewsController
 	}
 	
 	// Список новостей
-	public function index()
+	protected function actionIndex()
 	{
 		$this->view->arData = $this->model->News_getAll();
 		
@@ -21,7 +21,7 @@ class NewsController
 	}
 	
 	// Детальная новости
-	public function CNews_detail()
+	protected function actionNews_detail()
 	{
 		if(isset($_GET["id"])){
 			$id = (int) $_GET["id"];
@@ -41,7 +41,7 @@ class NewsController
 	}
 	
 	// Добавление новости
-	public function CAdd_news()
+	protected function actionAdd_news()
 	{
 		if(!isset($_POST["title"]) or !isset($_POST["text"]))
 		{
@@ -65,7 +65,7 @@ class NewsController
 	}
 	
 	// Обновление новости
-	public function CUpdate_news()
+	protected function actionUpdate_news()
 	{
 		if(isset($_GET["id"])){
 			$id = (int) $_GET["id"];
