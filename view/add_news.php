@@ -6,6 +6,6 @@
 	<input type="submit" name="submit" value="Добавить новость">
 </form>
 
-<?if(isset($this->MESS)){
-	echo "<p>$this->MESS</p>";
+<?if(isset($MESS)){
+	echo "<p>$MESS</p>";
 }?>

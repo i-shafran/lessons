@@ -2,9 +2,7 @@
 require_once __DIR__ . '/../classes/storage.php';
 
 class View extends Storage
-{
-	public $template_name = "";
-		
+{		
 	// Возвращает вид
 	public function display($template)
 	{

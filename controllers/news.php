@@ -36,7 +36,7 @@ class NewsController
 		if(!$this->view->arData){
 			echo "Что-то пошло не так или такой новости нет";
 		} else {
-			echo $this->view->display("news_detail");
+			echo $this->view->display("/view/news_detail.php");
 		}
 		
 		return true;
@@ -47,7 +47,7 @@ class NewsController
 	{
 		if(!isset($_POST["title"]) or !isset($_POST["text"]))
 		{
-			echo $this->view->display("add_news");
+			echo $this->view->display("/view/add_news.php");
 		} else {
 			foreach($_POST as &$value)
 			{
@@ -61,7 +61,7 @@ class NewsController
 				echo "Что-то пошло не так";
 			} else {
 				$this->view->MESS = "Новость успешно добавлена!";
-				echo $this->view->display("add_news");
+				echo $this->view->display("/view/add_news.php");
 			}
 		}		
 	}
@@ -80,7 +80,7 @@ class NewsController
 		if(!$this->view->arData){
 			echo "Нет такой новости";
 		} else {
-			echo $this->view->display("update_news");
+			echo $this->view->display("/view/update_news.php");
 		}
 		
 		return true;
