@@ -19,7 +19,7 @@ class NewsController
 	{
 		$this->view->arData = $this->model->News_getAll();
 		
-		echo $this->view->display("index");
+		echo $this->view->display("/view/index.php");
 	}
 	
 	// Детальная новости

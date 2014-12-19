@@ -19,7 +19,7 @@ class Storage implements Countable, Iterator
 		if(isset($this->data[$key])){
 			return $this->data[$key];
 		} else {
-			return "Error";
+			return null;
 		}
 	}
 
