@@ -6,7 +6,7 @@ abstract class AController
 	{
 		$actionName = 'action'.ucfirst($name);
 		if(method_exists($this, $actionName)){
-			$this->$actionName;
+			$this->$actionName();
 		}
 	}
 }
