@@ -1,6 +1,5 @@
 <?php
-
-require_once __DIR__ . '/controllers/news.php';
+require_once __DIR__ . '/classes/boot.php';
 
 $news = new NewsController();
 

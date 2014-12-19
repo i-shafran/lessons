@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../classes/storage.php';
 
 class View extends Storage
 {		

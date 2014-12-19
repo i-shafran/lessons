@@ -1,6 +1,4 @@
-<?
-require_once __DIR__ . '/../models/news.php';
-require_once __DIR__ . '/../classes/view.php';
+<?php
 
 class NewsController
 {
