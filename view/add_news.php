@@ -1,4 +1,4 @@
-<form action="" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/?page=news/add" method="post" enctype="application/x-www-form-urlencoded">
 	<label for="title">Название новости</label><br>
 	<input id="title" type="text" name="title"><br>
 	<label for="text">Текст новости</label><br>

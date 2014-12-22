@@ -21,7 +21,7 @@ class NewsController extends AController
 	}
 	
 	// Детальная новости
-	protected function actionNews_detail()
+	protected function actionDetail()
 	{
 		if(isset($_GET["id"])){
 			$id = (int) $_GET["id"];
@@ -40,18 +40,20 @@ class NewsController extends AController
 		return true;
 	}
 	
-	// Добавление новости
-	protected function actionAdd_news()
+	// Форма добавления новости
+	protected function actionAdd_form()
 	{
-		if(!isset($_POST["title"]) or !isset($_POST["text"]))
+		echo $this->view->display("/view/add_news.php");
+		return true;
+	}
+	
+	// Добавление новости
+	protected function actionAdd()
+	{
+		if(isset($_POST["title"]) and isset($_POST["text"]))
 		{
-			echo $this->view->display("/view/add_news.php");
-		} else {
-			foreach($_POST as &$value)
-			{
-				$value = strip_tags($value);
-			}
-			unset($value);
+			$_POST["title"] = strip_tags($_POST["title"]);
+			$_POST["text"] = strip_tags($_POST["text"]);
 
 			$res = $this->model->add_news($_POST["title"], $_POST["text"]);
 
@@ -61,11 +63,15 @@ class NewsController extends AController
 				$this->view->MESS = "Новость успешно добавлена!";
 				echo $this->view->display("/view/add_news.php");
 			}
+			
+			return true;
+		} else {
+			return false;
 		}		
 	}
 	
 	// Обновление новости
-	protected function actionUpdate_news()
+	protected function actionUpdate()
 	{
 		if(isset($_GET["id"])){
 			$id = (int) $_GET["id"];

@@ -7,7 +7,7 @@ function __autoload($class)
 	{
 		$classPath = __DIR__ . "/../$folder/$class.php";
 		
-		if(is_file($classPath))
+		if(is_readable($classPath))
 		{
 			require $classPath;
 			break;
