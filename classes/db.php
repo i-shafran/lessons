@@ -24,34 +24,15 @@ class PDOConfig extends PDO
 }
 
 class DB extends  PDOConfig
-{
+{	
 	public function __construct()
 	{
-		parent::__construct();
-		$this->query("SET NAMES utf8");
-	}
-	
-	public function DBQuery($sql)
-	{
-		$res = $this->query($sql, PDO::FETCH_ASSOC);
-		if(!$res){
-			var_dump($this->errorInfo());
-			return false;
+		try{
+			parent::__construct();
+			$this->query("SET NAMES utf8");
+		} catch(PDOException $error){
+			throw new MyExeption("Ошибка базы данных");
+			die;
 		}
-		$res = $res->fetchAll();
-
-		return $res;
-	}
-	
-	public function DBQueryOne($sql)
-	{
-		$res = $this->query($sql, PDO::FETCH_ASSOC);
-		if(!$res){
-			var_dump($this->errorInfo());
-			return false;
-		}
-		$res = $res->fetch();
-
-		return $res;
 	}
 }

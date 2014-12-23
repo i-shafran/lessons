@@ -1,48 +1,30 @@
 <?php
 
-class NewsModel extends Article
+class NewsModel extends AModel
 {
-	private $DB;
+	static protected $table = "news";
 	
-	public function __construct()
-	{
-		$this->DB = new DB();
-	}
-
 	// Список новостей
-	public function News_getAll()
+	public function getAll()
 	{
-		$sql = "SELECT * FROM news";
-		$res = $this->DB->DBQuery($sql);
-
-		if(!$res){
-			var_dump($this->DB->errorInfo());
-			return false;
-		}
-
-		return $res;
+		return $this->QueryAll();
 	}
 	
 	// Получить 1 новость
-	public function get_one_news($id)
+	public function getOne($id)
 	{
-		$sql = "SELECT * FROM news WHERE id = $id";
-		$res = $this->DB->DBQueryOne($sql);
-		
-		if(!$res){
-			var_dump($this->DB->errorInfo());
-			return false;
-		}	
-		
-		return $res;		
+		return $this->QueryOne($id);
 	}
 	
 	// Добавить новость
-	public function add_news($title, $text)
+	public function add($title, $text)
 	{
-		$sql = "INSERT INTO news (title, text) VALUES ('$title', '$text')";
-		$res = $this->DB->query($sql);
-		
+		$sth = $this->DB->prepare(static::$sql["AddRow"]);
+		$res = $sth->execute(array(
+			':title' => $title,
+			':text' => $text
+		));
+
 		if($res){
 			return true;
 		} else {
@@ -52,7 +34,7 @@ class NewsModel extends Article
 	}
 	
 	// Обновить новость
-	public function update_news($id)
+	public function update($id)
 	{
 		
 	}

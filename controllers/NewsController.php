@@ -15,7 +15,7 @@ class NewsController extends AController
 	// Список новостей
 	protected function actionIndex()
 	{
-		$this->view->arData = $this->model->News_getAll();
+		$this->view->arData = $this->model->getAll();
 		
 		echo $this->view->display("/view/index.php");
 	}
@@ -29,7 +29,7 @@ class NewsController extends AController
 			return false;
 		}
 
-		$this->view->arData = $this->model->get_one_news($id);
+		$this->view->arData = $this->model->getOne($id);
 
 		if(!$this->view->arData){
 			echo "Что-то пошло не так или такой новости нет";
@@ -55,7 +55,7 @@ class NewsController extends AController
 			$_POST["title"] = strip_tags($_POST["title"]);
 			$_POST["text"] = strip_tags($_POST["text"]);
 
-			$res = $this->model->add_news($_POST["title"], $_POST["text"]);
+			$res = $this->model->add($_POST["title"], $_POST["text"]);
 
 			if(!$res){
 				echo "Что-то пошло не так";
@@ -79,7 +79,7 @@ class NewsController extends AController
 			return false;
 		}
 
-		$this->view->arData = $this->model->get_one_news($id);
+		$this->view->arData = $this->model->getOne($id);
 
 		if(!$this->view->arData){
 			echo "Нет такой новости";
