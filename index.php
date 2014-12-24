@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/classes/boot.php';
+require_once __DIR__ . '/boot.php';
 
 
 // http://index.php?page=/news/index
