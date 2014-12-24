@@ -1,6 +1,6 @@
 <?php
 
-class DB extends  PDOConfig
+class DBConnection extends  PDOConfig
 {	
 	public function __construct()
 	{

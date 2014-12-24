@@ -4,10 +4,6 @@ class NewsModel extends AModel
 {
 	static protected $table = "news";
 	
-	// Сохранение и обновление новости
-	public function save()
-	{
-		
-	}
-		
+	static protected $columns = array("title", "text");
+	
 }
