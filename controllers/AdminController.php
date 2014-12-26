@@ -76,4 +76,16 @@ class NewsController extends AController
 		
 		return true;
 	}
+	
+	// Показать все новости в админке
+	protected function actionShowAll()
+	{
+		
+	}
+	
+	// Удалить новость
+	protected function actionDelete()
+	{
+		
+	}
 }
