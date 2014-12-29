@@ -1,5 +1,10 @@
 <?php
 
+namespace lesson\controllers;
+
+use lesson\models\NewsModel as NewsModel;
+use lesson\classes\View as View;
+
 abstract class AController
 {
 	protected $model;

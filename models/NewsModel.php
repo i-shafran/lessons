@@ -1,5 +1,7 @@
 <?php
 
+namespace lesson\models;
+
 class NewsModel extends AModel
 {
 	static protected $table = "news";

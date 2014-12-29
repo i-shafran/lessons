@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__ . '/boot.php';
 
-$news = new NewsModel();
-$news->title = "Новый заголовок 2";
+$news = new \lesson\models\NewsModel();
+//$news->title = "Новый заголовок 2";
 //$news->text = "Тестовый текст";
-$news->id = 6;
-$news->save();
+//$news->id = 6;
+//$news->save();
+var_dump($news->FindAll());
 die;
 
 

@@ -1,3 +1,5 @@
 <?php
 
-class MyExeption extends Exception{}
+namespace lesson\classes;
+
+class MyExeption extends \Exception{}

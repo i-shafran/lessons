@@ -1,6 +1,8 @@
 <?php
 
-class PDOConfig extends PDO
+namespace lesson\classes;
+
+class PDOConfig extends \PDO
 {
 
 	const config_file = "/../config.php";

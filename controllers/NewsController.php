@@ -1,11 +1,13 @@
 <?php
 
+namespace lesson\controllers;
+
 class NewsController extends AController
 {	
 	// Список новостей
 	protected function actionIndex()
 	{
-		$this->view->arData = $this->model->getAll();
+		$this->view->arData = $this->model->FindAll();
 		
 		echo $this->view->display("/view/index.php");
 	}
@@ -19,7 +21,7 @@ class NewsController extends AController
 			return false;
 		}
 
-		$this->view->arData = $this->model->getOne($id);
+		$this->view->arData = $this->model->FindOne($id);
 
 		if(!$this->view->arData){
 			echo "Что-то пошло не так или такой новости нет";

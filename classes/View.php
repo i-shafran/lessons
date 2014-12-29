@@ -1,5 +1,7 @@
 <?php
 
+namespace lesson\classes;
+
 class View extends Storage
 {		
 	// Возвращает вид

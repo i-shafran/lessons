@@ -1,15 +1,21 @@
 <?php
 
+namespace lesson\models;
+
+use lesson\classes\DBConnection;
+use lesson\classes\MyExeption;
+
 abstract class AModel
 {
 	static protected $table;
+	static protected $columns;
 	
 	// Выбрать все
 	static public function FindAll()
 	{
 		$DB = new DBConnection();
 		$sth = $DB->prepare("SELECT * FROM ".static::$table);
-		$sth->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+		$sth->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
 		$res = $sth->execute();
 
 		if(!$res){
@@ -31,7 +37,7 @@ abstract class AModel
 	{
 		$DB = new DBConnection();
 		$sth = $DB->prepare("SELECT * FROM ". static::$table ." WHERE id=:id");
-		$sth->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+		$sth->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
 		$sth->execute(array(
 			':id' => $id
 		));

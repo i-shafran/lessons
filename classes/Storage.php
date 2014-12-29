@@ -1,6 +1,8 @@
 <?php
 
-class Storage implements Countable, Iterator
+namespace lesson\classes;
+
+class Storage implements \Countable, \Iterator
 {
 	private $data = array();
 	

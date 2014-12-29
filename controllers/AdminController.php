@@ -1,5 +1,7 @@
 <?php
 
+namespace lesson\controllers;
+
 class NewsController extends AController
 {
 	// Форма добавления новости
