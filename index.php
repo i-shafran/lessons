@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/boot.php';
 
+$les = new \Monolog\Logger("DDDDD");
+$les->addRecord(200, "Сообщение лога");
+
+die;
+
 $news = new \lesson\models\NewsModel();
 //$news->title = "Новый заголовок 2";
 //$news->text = "Тестовый текст";
