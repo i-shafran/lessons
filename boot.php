@@ -1,7 +1,9 @@
 <?php
 include __DIR__ . '/vendor/autoload.php';
 
-function __autoload($class)
+spl_autoload_register('MyBoot');
+
+function MyBoot($class)
 {
 	$namespace = explode("\\", $class);
 	array_shift($namespace);
